@@ -8,6 +8,7 @@ import boto3
 dynamodb = boto3.resource('dynamodb')
 
 
+
 def create(event, context):
     data = json.loads(event['body'])
     if 'text' not in data:
