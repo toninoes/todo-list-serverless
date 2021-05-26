@@ -19,10 +19,19 @@ def translate(event, context):
     
     respuesta_trad = traductor.translate_text(Text=result['Item']['text'], SourceLanguageCode="auto", TargetLanguageCode=event['pathParameters']['language'])
     
+    item = {
+        'id': result['Item']['id'],
+        'text': respuesta_trad,
+        'checked': result['Item']['checked'],
+        'createdAt': result['Item']['createdAt'],
+        'updatedAt': result['Item']['updatedAt'],
+    }
+    
     # create a response
     response = {
         "statusCode": 200,
-        "body": json.dumps(respuesta_trad.get('TranslatedText'), cls=decimalencoder.DecimalEncoder)
+        #"body": json.dumps(respuesta_trad.get('TranslatedText'), cls=decimalencoder.DecimalEncoder)
+        "body": json.dumps(item)
     }
 
     return response
