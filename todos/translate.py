@@ -21,7 +21,7 @@ def translate(event, context):
     
     item = {
         'id': result['Item']['id'],
-        'text': respuesta_trad,
+        'text': respuesta_trad.get('TranslatedText'),
         'checked': result['Item']['checked'],
         'createdAt': result['Item']['createdAt'],
         'updatedAt': result['Item']['updatedAt'],
@@ -30,7 +30,6 @@ def translate(event, context):
     # create a response
     response = {
         "statusCode": 200,
-        #"body": json.dumps(respuesta_trad.get('TranslatedText'), cls=decimalencoder.DecimalEncoder)
         "body": json.dumps(item)
     }
 
